@@ -87,7 +87,7 @@ type ExecutionSequencer interface {
 }
 
 // needed for batch poster
-type ArbOSVersionGetter interface {
+type ExecutionBatchPoster interface {
 	ArbOSVersionForMessageIndex(msgIdx arbutil.MessageIndex) containers.PromiseInterface[uint64]
 }
 

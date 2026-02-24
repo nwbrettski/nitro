@@ -1013,7 +1013,7 @@ func getBatchPoster(
 	l1Reader *headerreader.HeaderReader,
 	inboxTracker *InboxTracker,
 	txStreamer *TransactionStreamer,
-	arbOSVersionGetter execution.ArbOSVersionGetter,
+	arbOSVersionGetter execution.ExecutionBatchPoster,
 	consensusDB ethdb.Database,
 	syncMonitor *SyncMonitor,
 	deployInfo *chaininfo.RollupAddresses,
@@ -1147,7 +1147,7 @@ func createNodeImpl(
 	executionClient execution.ExecutionClient,
 	executionSequencer execution.ExecutionSequencer,
 	executionRecorder execution.ExecutionRecorder,
-	arbOSVersionGetter execution.ArbOSVersionGetter,
+	arbOSVersionGetter execution.ExecutionBatchPoster,
 	consensusDB ethdb.Database,
 	configFetcher ConfigFetcher,
 	l2Config *params.ChainConfig,
@@ -1441,7 +1441,7 @@ func CreateConsensusNode(
 	var executionClient execution.ExecutionClient
 	var executionRecorder execution.ExecutionRecorder
 	var executionSequencer execution.ExecutionSequencer
-	var arbOSVersionGetter execution.ArbOSVersionGetter
+	var arbOSVersionGetter execution.ExecutionBatchPoster
 	if configFetcher.Get().ExecutionRPCClient.URL != "" {
 		execConfigFetcher := func() *rpcclient.ClientConfig { return &configFetcher.Get().ExecutionRPCClient }
 		rpcClient := executionrpcclient.NewClient(execConfigFetcher, stack)
